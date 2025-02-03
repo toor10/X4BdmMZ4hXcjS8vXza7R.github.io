@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifica Data</title>
+	<style>
+        body {
+            background-color: lightgreen;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+		
+
+    </style>
+<body>
+<center>
+
+<table bgcolor="white" border="2"><tr><td>
+	<img src="https://scaling.spaggiari.eu/VIII0003/logo/5027.png&rs=%2FtccTw2MgxYfdxRYmYOB6HjkoZcUOGTiYi6QRxuVV5sOGTp63rmnr%2BRTYVh7%2BFO%2FGwXtspJHA9p4BXfBXCcE%2BNfMTv1f63V8Ma7anOoEpmr1vY686jQADlCXWoD41fhLPKDeb5KzEXlN3xj5VLED2HK76ruGkCrzhAMWUaH%2BXdg%3D" width="1000" bgcolor="white">
+    </td></tr></table>
+	<br>
+	<iframe src="https://free.timeanddate.com/clock/i9kpmapa/n341/tlit6/fs20/ftb/bo2/pl5/pr5/pt0/pb0/tt0/td1/th1" frameborder="0" width="377" height="25"></iframe>
+<h1>Trova Pomeriggi (Giovedì)</h1>
+    <!-- <h1>Verifica la Data Corrente</h1> -->
+
+    <label for="day">GG:</label>
+    <input type="number" id="day" min="1" max="31" step="1">
+
+    <label for="month">MM:</label>
+    <input type="number" id="month" min="1" max="12" step="1">
+
+    <label for="year">AAAA:</label>
+    <input type="number" id="year" min="2023" max="2030" step="1">
+
+    <h2 id="result"></h2>
+
+    <script>
+	// Definire le variabili 1 e 2
+        const variabile1 = "Si, hai il pomeriggio!";  // Sostituire con il valore per variabile1
+        const variabile2 = "No, non hai pomeriggio!";  // Sostituire con il valore per variabile2
+	
+        // Lista di date e corrispondenti risposte
+        const dateList = {
+            "02/01/2025": variabile2,
+            "09/01/2025": variabile1,
+            "16/01/2025": variabile2,
+            "23/01/2025": variabile1,
+            "30/01/2025": variabile2,
+            "06/02/2025": variabile1,
+            "13/02/2025": variabile2,
+            "20/02/2025": variabile1,
+            "27/02/2025": variabile2,
+            "06/03/2025": variabile1,
+            "13/03/2025": variabile2,
+            "20/03/2025": variabile1,
+            "27/03/2025": variabile2,
+            "03/04/2025": variabile1,
+            "10/04/2025": variabile2,
+            "17/04/2025": variabile1,
+            "24/04/2025": variabile2,
+            "01/05/2025": variabile1,
+            "08/05/2025": variabile2,
+            "15/05/2025": variabile1,
+            "22/05/2025": variabile2,
+            "29/05/2025": variabile1,
+            "05/06/2025": variabile2,
+            "12/06/2025": variabile1,
+            "19/06/2025": variabile2,
+            "26/06/2025": variabile1,
+            "03/07/2025": variabile2,
+            "10/07/2025": variabile1,
+            "17/07/2025": variabile2,
+            "24/07/2025": variabile1,
+            "31/07/2025": variabile2,
+            "07/08/2025": variabile1,
+            "14/08/2025": variabile2,
+            "21/08/2025": variabile1,
+            "28/08/2025": variabile2,
+            "04/09/2025": variabile1,
+            "11/09/2025": variabile2,
+            "18/09/2025": variabile1,
+            "25/09/2025": variabile2,
+            "02/10/2025": variabile1,
+            "09/10/2025": variabile2,
+            "16/10/2025": variabile1,
+            "23/10/2025": variabile2,
+            "30/10/2025": variabile1,
+            "06/11/2025": variabile2,
+            "13/11/2025": variabile1,
+            "20/11/2025": variabile2,
+            "27/11/2025": variabile1,
+            "04/12/2025": variabile2,
+            "11/12/2025": variabile1,
+            "18/12/2025": variabile2,
+            "25/12/2025": variabile1
+        };
+
+        // Funzione per inizializzare i selettori con la data corrente
+        function initializeDateSelectors() {
+            const currentDate = new Date();
+            const dayInput = document.getElementById("day");
+            const monthInput = document.getElementById("month");
+            const yearInput = document.getElementById("year");
+
+            // Imposta la data corrente nei selettori
+            dayInput.value = currentDate.getDate();
+            monthInput.value = currentDate.getMonth() + 1; // Mesi sono da 0 a 11
+            yearInput.value = currentDate.getFullYear();
+
+            // Esegui la verifica iniziale
+            checkDate();
+        }
+
+        // Funzione per verificare la data
+        function checkDate() {
+            const day = document.getElementById("day").value.padStart(2, '0');
+            const month = document.getElementById("month").value.padStart(2, '0');
+            const year = document.getElementById("year").value;
+
+            const inputDate = `${day}/${month}/${year}`;
+            const resultElement = document.getElementById("result");
+
+            // Controlla se la data è nell'elenco
+            if (dateList[inputDate]) {
+                resultElement.textContent = dateList[inputDate];
+            } else {
+                resultElement.textContent = "Sicuro sia un Giovedì?";
+            }
+        }
+
+        // Aggiungi eventi di ascolto per aggiornare la verifica ogni volta che cambia la data
+        document.getElementById("day").addEventListener("input", checkDate);
+        document.getElementById("month").addEventListener("input", checkDate);
+        document.getElementById("year").addEventListener("input", checkDate);
+
+        // Inizializza i selettori con la data corrente
+        window.onload = initializeDateSelectors;
+    </script>
+</center>
+</body>
+</html>
